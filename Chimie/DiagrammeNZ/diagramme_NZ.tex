@@ -1,0 +1,73 @@
+\documentclass[border=0cm,10pt,convert={ghostscript,outext=.png,density=800x800}]{standalone}%conversion en png avec ghostscript (adapter selon l'installation)
+% conversion en png : ouvrir un terminal dans le dossier de ce fichier.
+% exécuter la commande xelatex -shell-escape <nom du fichier>
+
+%COMPILé AVEC XeLaTeX
+
+\usepackage[T1]{fontenc}
+\usepackage{libertine}
+
+\usepackage[dvipsnames,svgnames]{xcolor}
+\colorlet{c_alpha}{LimeGreen}
+\colorlet{c_beta_p}{magenta}
+\colorlet{c_beta_m}{CornflowerBlue}
+\colorlet{c_beta_p}{Magenta}
+\colorlet{c_capt_e}{yellow!50!red}
+\colorlet{c_em_proton}{violet}
+\colorlet{c_em_neutron}{brown}
+\colorlet{c_fission}{red}
+\mathcode`\.="013B%virgule décimale en mode math
+\usepackage{pgfplots}\pgfplotsset{compat=newest}
+
+\begin{document}
+
+\Large
+\newlength{\taillept}
+\setlength{\taillept}{0.5pt}
+	\begin{tikzpicture}
+		\begin{axis}
+		[xlabel=nombre de neutrons N,
+		ylabel=numéro atomique Z,
+		title=Diagramme N -- Z (de \textsc{Segrè}) des nucléides,
+		width=11cm,height=8cm,
+		xmin=0,ymin=0,xmax=180,
+		ymax=120,
+		legend pos=south east,
+		legend image post style={scale=2},
+		legend style={
+			/tikz/nodes={anchor=west},
+ },
+minor x tick num=1,minor y tick num=1,
+grid = both,
+		]
+		\addplot [only marks, mark size=\taillept] table [col sep=semicolon,x=N, y=Z] {noyaux_stables.csv};
+		\addlegendentry{stables}
+		
+		\addplot [only marks, mark size=\taillept, c_alpha] table [col sep=semicolon,x=N, y=Z] {noyaux_alpha.csv};
+		\addlegendentry{$ \alpha $}
+		
+		\addplot [only marks, mark size=\taillept, c_beta_p] table [col sep=semicolon,x=N, y=Z] {noyaux_beta_p.csv};
+		\addlegendentry{$ \beta^+ $}
+		
+		\addplot [only marks, mark size=\taillept, c_beta_m] table [col sep=semicolon,x=N, y=Z] {noyaux_beta_m.csv};
+		\addlegendentry{$ \beta^- $}
+		
+		\addplot [only marks, mark size=\taillept, c_capt_e] table [col sep=semicolon,x=N, y=Z] {autres.csv};
+		\addlegendentry{autres}
+
+		% \addplot [only marks, mark size=\taillept, c_capt_e] table [col sep=semicolon,x=N, y=Z] {noyaux_capt_e.csv};
+		% \addlegendentry{capture é.}
+		% 
+		% \addplot [only marks, mark size=\taillept, c_em_proton] table [col sep=semicolon,x=N, y=Z] {noyaux_em_proton.csv};
+		% \addlegendentry{ém. proton}
+		% 
+		% \addplot [only marks, mark size=\taillept, c_em_neutron] table [col sep=semicolon,x=N, y=Z] {noyaux_em_neutron.csv};
+		% \addlegendentry{ém. neutron}
+		% 
+		% \addplot [only marks, mark size=\taillept, c_fission] table [col sep=semicolon,x=N, y=Z] {noyaux_fission.csv};
+		% \addlegendentry{fission sp.}
+		
+		\addplot [gray, dashed, domain=0:120]{x};
+		\end{axis}
+	\end{tikzpicture}
+\end{document}
