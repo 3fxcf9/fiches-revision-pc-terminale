@@ -39,10 +39,10 @@
 \titlespacing*{\subsection}{0pt}{0.1\baselineskip}{0.2\baselineskip}
 
 % Usefull commands
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\R}{\mathbb{R}}
-\renewcommand{\P}{\mathbb{P}}
+\newcommand*{\N}{\mathbb{N}}
+\newcommand*{\Z}{\mathbb{Z}}
+\newcommand*{\R}{\mathbb{R}}
+\renewcommand*{\P}{\mathbb{P}}
 \renewcommand*{\vec}{\vv}
 
 \begin{document}
@@ -67,24 +67,29 @@
 \[
 	\Delta E_c = \sum W(\vec{F}) \quad\text{ et }\quad \Delta E_m = \sum W(\vec{F_{NC}})
 \]
+\subsection{Rappels: Mouvement dans un champ uniforme}
+\[
+  \vec{P}=m\vec{g}\;;\  W_{\!\!AB}(\vec{P})=mg(z_A-z_B) \quad\mid\quad \vec{Fe}=q\vec{E}\;;\  W_{\!\!AB}(\vec{Fe})=q\cdot U_{\!\!AB}
+\]
 
 \subsection{Loi de Newton}
 $$\sum{F_{ext}}=m\cdot\vec{a}$$
+
 \subsection{Principe général}
 Dans un repère $(O, \vec{u_1}, \vec{u_2})$, l'objet étudié est modélisé par le point $M$.
-$$\vec{a}=\frac{d\vec{v}}{dt}=\frac{d^2\vec{OM}}{dt^2}$$
+$$\hspace{-2em}\vec{a}=\frac{d\vec{v}}{dt}=\frac{d^2\vec{OM}}{dt^2}$$
 \subsection{Mouvement circulaire}
 \begin{minipage}[t]{0.55\linewidth}
     Dans la base de Frenet $(O,\vec{u_T},\vec{u_N})$,
-    $\displaystyle \vec{a}\begin{pmatrix}\displaystyle\frac{dv}{dt}\\\frac{v^2}{r}\end{pmatrix}$ :\\[4pt]
-    $\displaystyle \vec{a}=\frac{d\vec{v}}{dt}=\frac{d(v\vec{u_T})}{dt}=\frac{dv}{dt}\vec{u_T}+\frac{v^2}{r}\vec{u_N}$\\
+  $\displaystyle \vec{a}\left(\frac{dv}{dt};\frac{v^2}{r}\right)$:\\[4pt]
+    $\displaystyle \vec{a}=\frac{d\vec{v}}{dt}=\frac{d(v\vec{u_T})}{dt}=\frac{dv}{dt}\vec{u_T}+\frac{v^2}{r}\vec{u_N}$
     \begin{itemize}[noitemsep]
         \item $\vec{a_T}$ est l'accélération \textbf{tangentielle}.
         \item $\vec{a_N}$ est l'accélération \textbf{centripète}.
     \end{itemize}
 \end{minipage}
 \begin{minipage}[t]{0.4\linewidth}
-    \vspace*{-1cm}
+    \vspace*{-2cm}
     \begin{tikzpicture}[baseline=(current bounding box.north),rotate=40]
         % Define radius
         \def\r{2}
